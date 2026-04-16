@@ -1,0 +1,16 @@
+---
+- name: Встановлення та запуск Nginx
+  hosts: web
+  become: yes
+  tasks:
+    - name: Оновлення кешу пакетів та встановлення nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Перевірка, що сервіс nginx запущений
+      service:
+        name: nginx
+        state: started
+        enabled: yes
